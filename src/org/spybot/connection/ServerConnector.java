@@ -76,41 +76,45 @@ public class ServerConnector {
 		//json = "[{id:1, command:\"cmd\"}]";
 		List<Command> commands= (List<Command>) gson.fromJson(json, listType);
 		
-		System.out.println("Got commands from server: " + commands.get(0).getCommand());
-		
-		String result;
-		String id = Commands.getIMEI();
-		StringEntity se = null;
-		HttpPost post;
-		Command cmd;
-		for (int i=0; i<commands.size(); i++)
+		if(commands !=null)
 		{
-			cmd = commands.get(i);
-			post = new HttpPost(getNetworksUrl + "/results/"  + id +  "/" + cmd.getId() +  "/");
-			result = Commands.invoke(cmd.getCommand());
-			System.out.println(result);
-			//String JSON = gson.toJson(new Result(result), Result.class);
-			//json = gson.toJson(new Result(result), Result.class);
-			//System.out.println(json);
-			try {
-				se = new StringEntity(result);
-			} catch (UnsupportedEncodingException e) {
-				e.printStackTrace();
-			}
-			//se.setContentEncoding("UTF-8");
-			//se.setContentType("application/json");
-			//se.setContentEncoding(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));//??
-			post.setEntity(se);
-			try {
-				HttpResponse resp = httpClient.execute(post, httpContext);
-				resp.getEntity().consumeContent();
-			} catch (ClientProtocolException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+			if(commands.size()>=1)
+				System.out.println("Got commands from server: " + commands.get(0).getCommand());
 			
+			String result;
+			String id = Commands.getIMEI();
+			StringEntity se = null;
+			HttpPost post;
+			Command cmd;
+			for (int i=0; i<commands.size(); i++)
+			{
+				cmd = commands.get(i);
+				post = new HttpPost(getNetworksUrl + "/results/"  + id +  "/" + cmd.getId() +  "/");
+				result = Commands.invoke(cmd.getCommand());
+				System.out.println(result);
+				//String JSON = gson.toJson(new Result(result), Result.class);
+				//json = gson.toJson(new Result(result), Result.class);
+				//System.out.println(json);
+				try {
+					se = new StringEntity(result);
+				} catch (UnsupportedEncodingException e) {
+					e.printStackTrace();
+				}
+				//se.setContentEncoding("UTF-8");
+				//se.setContentType("application/json");
+				//se.setContentEncoding(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));//??
+				post.setEntity(se);
+				try {
+					HttpResponse resp = httpClient.execute(post, httpContext);
+					resp.getEntity().consumeContent();
+				} catch (ClientProtocolException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				
+			}
+			System.out.println("done!");
 		}
-		System.out.println("done!");
 	}
 }	
