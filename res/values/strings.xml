@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">Hello World, FreeNetDroidActivity!</string>
+    <string name="app_name">SpyBot</string>
+	<string name="no_networks">Nothing to show.</string>
+	<string name="test">Test</string>
+	<string name="send_info">Send network info.</string>
+	<string name="ip_address">192.168.0.22</string>
+	<string name="port">5566</string>
+	<string name="show_on_map">Show on a map.</string>
+	<string name="show_all">Pokaż na mapie wszystkie sieci.</string>
+	<string name="show_point">Show a point</string>
+	<string name="show_area">Show an area</string>
+	<string name="show_polygon">Show a polygon</string>
+	<string name="clear">Clear</string>
+	<string name="get_data">Invoke server commands</string>
+	<string name="get_networks_address">http://localhost:8080/JSONcommunications/rest/networkinfo</string>
+	<string name="send_data">Send gathered data to server</string>
+	<string name="submit">Submit</string>
+	<string name="comment">comment</string>
+	<string name="back">back</string>
+	<string name="show_comments">show_comments</string>
+</resources>
